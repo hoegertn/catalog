@@ -17,7 +17,8 @@
     "react-github-corner": "^2.3.0",
     "react-scripts": "3.3.0",
     "typescript": "~3.7.2",
-    "fuzzy-search": "~3.2.1"
+    "fuzzy-search": "~3.2.1",
+    "catalog-schema": "0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

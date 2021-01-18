@@ -1,27 +1,13 @@
 import FuzzySearch from 'fuzzy-search';
+import * as schema from 'catalog-schema';
 
-export interface ConstructPackage {
-    name: string;
-    version: string;
-    metadata: {
-        name: string;
-        scope: string;
-        version: string;
-        description: string;
-        keywords: string[];
-        date: string;
-        author: {
-            name: string;
-        },
-    },
-    url: string;
-}
+const FIELD_LIST = ['name', 'metadata.description', 'metadata.keywords', 'metadata.author.name', 'metadata.author.twitter'];
 
-export async function searchByQuery(query: string): Promise<ConstructPackage[]> {
+export async function searchByQuery(query: string): Promise<schema.Package[]> {
     return fetch('/index/packages.json')
         .then((response) => response.json())
-        .then((list: ConstructPackage[]) => {
-            const searcher = new FuzzySearch(list, ['name', 'metadata.description', 'metadata.keywords', 'metadata.author.name'], { sort: true });
+        .then((list: schema.Package[]) => {
+            const searcher = new FuzzySearch(list, FIELD_LIST, { sort: true });
             return searcher.search(query);
         }, (err) => {
             console.error(err);

@@ -41,6 +41,22 @@ beforeAll(() => {
                             }
                         ]
                     },
+                    "major": 0,
+                    "languages": {
+                        "typescript": {
+                            "url": "https://www.npmjs.com/package/cdk-apex-cname/v/0.1.4",
+                            "npm": {
+                                "package": "cdk-apex-cname"
+                            }
+                        },
+                        "python": {
+                            "url": "https://pypi.org/project/cdk-apex-cname/0.1.4/",
+                            "pypi": {
+                                "distName": "cdk-apex-cname",
+                                "module": "cdk-apex-cname"
+                            }
+                        }
+                    },
                     "tweetid": "DUMMY",
                     "url": "https://awscdk.io/packages/cdk-fargate-express@0.4.131/"
                 },
@@ -68,7 +84,7 @@ beforeAll(() => {
                             "bugs": "https://github.com/nideveloper/CDK-SPA-Deploy/issues"
                         },
                         "author": {
-                            "name": "matt@vs-software.co.uk"
+                            "name": "matt@vs-software.co.uk",
                         },
                         "publisher": {
                             "username": "nideveloper",
@@ -80,6 +96,22 @@ beforeAll(() => {
                                 "email": "matt@vs-software.co.uk"
                             }
                         ]
+                    },
+                    "major": 0,
+                    "languages": {
+                        "typescript": {
+                            "url": "https://www.npmjs.com/package/cdk-apex-cname/v/0.1.4",
+                            "npm": {
+                                "package": "cdk-apex-cname"
+                            }
+                        },
+                        "python": {
+                            "url": "https://pypi.org/project/cdk-apex-cname/0.1.4/",
+                            "pypi": {
+                                "distName": "cdk-apex-cname",
+                                "module": "cdk-apex-cname"
+                            }
+                        }
                     },
                     "tweetid": "1228342965338345472",
                     "url": "https://awscdk.io/packages/cdk-spa-deploy@0.6.0/"
@@ -119,6 +151,22 @@ beforeAll(() => {
                                 "email": "stefdefig@hotmail.co.uk"
                             }
                         ]
+                    },
+                    "major": 0,
+                    "languages": {
+                        "typescript": {
+                            "url": "https://www.npmjs.com/package/cdk-apex-cname/v/0.1.4",
+                            "npm": {
+                                "package": "cdk-apex-cname"
+                            }
+                        },
+                        "python": {
+                            "url": "https://pypi.org/project/cdk-apex-cname/0.1.4/",
+                            "pypi": {
+                                "distName": "cdk-apex-cname",
+                                "module": "cdk-apex-cname"
+                            }
+                        }
                     },
                     "tweetid": "1262678400151498752",
                     "url": "https://awscdk.io/packages/cdk-apex-cname@0.1.4/"
