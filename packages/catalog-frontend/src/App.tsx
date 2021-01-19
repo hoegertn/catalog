@@ -5,6 +5,7 @@ import { Icon, Label, Input, InputOnChangeData } from 'semantic-ui-react'
 import { Grid } from 'semantic-ui-react'
 import { searchByQuery } from './SearchApi';
 import logo from './logo.png';
+import './App.css';
 import { Image } from 'semantic-ui-react'
 
 export class App extends React.Component<{}, { packages: schema.Package[], activePage: number }> {
@@ -26,21 +27,21 @@ export class App extends React.Component<{}, { packages: schema.Package[], activ
       cards.push(<PackageCard key={i} package={p}></PackageCard>)
     }
 
-    const cardsPerRow = 'four';
+    const cardsPerRow = 'three';
 
     return (
 
-      <Grid>
+      <Grid padded>
         <Grid.Row className="App-search" centered>
           <Image src={logo} alt="logo" size='small'></Image>
         </Grid.Row>
         <Grid.Row className="App-search" centered>
           <Input onChange={this.onSearchChange}/>
-          <Label>
+          <Label className="v-middle">
             <Icon name='numbered list'/> {packages.length}
           </Label>
         </Grid.Row>
-        <Grid.Row className={`ui ${cardsPerRow} doubling stackable cards`}>
+        <Grid.Row className={`ui ${cardsPerRow} doubling stackable cards container`}>
           {cards}
         </Grid.Row>
       </Grid>
