@@ -1,29 +1,65 @@
 import React from 'react';
-import SearchForm from './SearchForm';
-import GithubCorner from 'react-github-corner';
+import PackageCard from './PackageCard';
+import * as schema from 'catalog-schema';
+import { Icon, Label, Input, InputOnChangeData } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
+import { searchByQuery } from './SearchApi';
 import logo from './logo.png';
-import './App.css';
+import { Image } from 'semantic-ui-react'
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <section className="App-header">
-        <h1>CDK Construct Catalog</h1>
-        <img src={logo} alt="logo" />
-        <p>A catalog of AWS CDK construct libraries.</p>
-      </section>
+export class App extends React.Component<{}, { packages: schema.Package[], activePage: number }> {
 
-      <section className="App-search">
-        <SearchForm></SearchForm>
-      </section>
+  constructor(props: any) {
+    super(props);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.state = { packages: [], activePage: 1 };
+    this.search('');
+  }
 
-      <section className="App-disclaimer">
-        <p>This is a community project and is not supported by AWS</p>
-      </section>
+  public render() {
 
-      <GithubCorner href="https://github.com/construct-catalog/catalog" />
-    </div>
-  );
+    const packages = this.state.packages;
+    const cards = [];
+
+    for (const i in packages) {
+      const p = packages[i];
+      cards.push(<PackageCard key={i} package={p}></PackageCard>)
+    }
+
+    const cardsPerRow = 'four';
+
+    return (
+
+      <Grid>
+        <Grid.Row className="App-search" centered>
+          <Image src={logo} alt="logo" size='small'></Image>
+        </Grid.Row>
+        <Grid.Row className="App-search" centered>
+          <Input onChange={this.onSearchChange}/>
+          <Label>
+            <Icon name='numbered list'/> {packages.length}
+          </Label>
+        </Grid.Row>
+        <Grid.Row className={`ui ${cardsPerRow} doubling stackable cards`}>
+          {cards}
+        </Grid.Row>
+      </Grid>
+
+    );
+
+  }
+
+  private onSearchChange(event: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) {
+    this.search(data.value);
+  }
+
+  private search(q: string) {
+    searchByQuery(q)
+      .then(data => {
+        this.setState({ packages: data })
+      });
+  }
+
 }
 
 export default App;
