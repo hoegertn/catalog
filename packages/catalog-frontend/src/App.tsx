@@ -3,18 +3,19 @@ import PackageCard from './PackageCard';
 import * as schema from 'catalog-schema';
 import { Icon, Label, Input, InputOnChangeData } from 'semantic-ui-react'
 import { Grid } from 'semantic-ui-react'
-import { searchByQuery } from './SearchApi';
+import { searchByQuery, getTotalCount } from './SearchApi';
 import logo from './logo.png';
 import './App.css';
 import { Image } from 'semantic-ui-react'
 
-export class App extends React.Component<{}, { packages: schema.Package[], activePage: number }> {
+export class App extends React.Component<{}, { packages: schema.Package[], activePage: number, count: number }> {
 
   constructor(props: any) {
     super(props);
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.state = { packages: [], activePage: 1 };
+    this.state = { packages: [], activePage: 1, count: 0 };
     this.search('');
+    getTotalCount().then(count => this.setState({...this.state, count}))
   }
 
   public render() {
@@ -38,7 +39,7 @@ export class App extends React.Component<{}, { packages: schema.Package[], activ
         <Grid.Row className="App-search" centered>
           <Input onChange={this.onSearchChange}/>
           <Label className="v-middle">
-            <Icon name='numbered list'/> {packages.length}
+            <Icon name='numbered list'/> {packages.length}/{this.state.count}
           </Label>
         </Grid.Row>
         <Grid.Row className={`ui ${cardsPerRow} doubling stackable cards container`}>
@@ -57,7 +58,7 @@ export class App extends React.Component<{}, { packages: schema.Package[], activ
   private search(q: string) {
     searchByQuery(q)
       .then(data => {
-        this.setState({ packages: data })
+        this.setState({ ...this.state, packages: data });
       });
   }
 
